@@ -1,0 +1,24 @@
+placeEnemy( , ) // to place an enemy on the map
+
+
+getEnemyLoc( , ) // returns x and y values as integers
+
+
+
+moveEnemy(string) // left,right,up,down
+
+
+
+initEnm // to make enemies
+
+
+wall 5 6
+
+wall 5 7
+
+wall 5 8
+
+enemy 1 1
+
+
+read file needs to place walls, enemys, arrows, chest, player
