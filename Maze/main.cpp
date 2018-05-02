@@ -12,7 +12,6 @@
 #include <fstream>
 #include <sstream>
 
-
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -32,9 +31,14 @@ using namespace std;
 Maze *M = new Maze(20);                         // Set Maze grid size
 Player *P = new Player();                       // create player
 
-wall W[10000];                                    // wall with number of bricks
+wall W[10000];
+int wallArray[50][50];                                    // wall with number of bricks
 Enemies E[100];                                  // create number of enemies
-Timer *T0 = new Timer();                        // animation timer
+Timer *T0 = new Timer();
+ string line, obj;
+    int x, y;
+    int numWall = 0;
+    int numEnemy = 0;                       // animation timer
 
 float wWidth, wHeight;                          // display window width and Height
 float xPos,yPos;                                // Viewpoar mapping
@@ -73,11 +77,6 @@ void init()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
      M->loadBackgroundImage("images/bak.jpg");           // Load maze background image
 
-    string line, obj;
-    int x, y;
-    int numWall = 0;
-    int numEnemy = 0;
-
     fstream myfile ("maze.txt");
 if (myfile.is_open()){
     cout << "Able to open file" << endl;
@@ -95,6 +94,7 @@ if (myfile.is_open()){
        else if(obj == "wall"){
             W[numWall].wallInit(M->getGridSize(),"images/wall.png");// Load walls
             W[numWall].placeWall(x,y);
+            wallArray[x][y] = 1;
             numWall++;                              // place each brick
             }
         else if(obj =="arrow"){
@@ -233,48 +233,72 @@ void mouse(int btn, int state, int x, int y){
 
 void Specialkeys(int key, int x, int y)
 {
-
     // Your Code here
     switch(key)
     {
     case GLUT_KEY_UP:
+        if(P->livePlayer){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
-         P->movePlayer("up",P->frames);
-       //  E[0].moveEnemy("up");
-        // E[1].moveEnemy("up");
-        // E[2].moveEnemy("up");
+         if(wallArray[P->getPlayerLoc().x][P->getPlayerLoc().y + 1] == 1 ){} // do nothing, hit wall
+         else{P->movePlayer("up",P->frames);} // move up
+         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+            P->arrowStatus = true;
+            P->shootArrow();}
+            for(int i = 0; i < numEnemy; i++){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+            P->livePlayer = false;}
+            }
+        }
     break;
 
     case GLUT_KEY_DOWN:
+        if(P->livePlayer){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
-         P->movePlayer("down",P->frames);
-         //E[0].moveEnemy("down");
-         //E[1].moveEnemy("down");
-        // E[2].moveEnemy("down");
+          if(wallArray[P->getPlayerLoc().x][P->getPlayerLoc().y - 1] == 1 ){} // do nothing hit wall
+          else{P->movePlayer("down",P->frames);} // move down
+        if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+            P->arrowStatus = true;
+            P->shootArrow();}
+         for(int i = 0; i < numEnemy; i++){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+            P->livePlayer = false;}
+            }
+        }
     break;
 
     case GLUT_KEY_LEFT:
+        if(P->livePlayer){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
-         P->movePlayer("left",P->frames);
-         //E[0].moveEnemy("left");
-         //E[1].moveEnemy("left");
-         //E[2].moveEnemy("left");
-
+          if(wallArray[P->getPlayerLoc().x - 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
+          else{P->movePlayer("left",P->frames);} // move left
+        if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+            P->arrowStatus = true;
+            P->shootArrow();}
+       for(int i = 0; i < numEnemy; i++){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+            P->livePlayer = false;}
+            }
+        }
     break;
 
     case GLUT_KEY_RIGHT:
+        if(P->livePlayer){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
-         P->movePlayer("right",P->frames);
-         //E[0].moveEnemy("right");
-         //E[1].moveEnemy("right");
-         //E[2].moveEnemy("right");
+          if(wallArray[P->getPlayerLoc().x + 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
+          else{P->movePlayer("right",P->frames);} // move right
+          if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+            P->arrowStatus = true;
+            P->shootArrow();}
+       for(int i = 0; i < numEnemy; i++){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+            P->livePlayer = false;}
+            }
+        }
     break;
 
-   }
+    }
   glutPostRedisplay();
 }
-
-
 /* Program entry point */
 
 int main(int argc, char *argv[])
