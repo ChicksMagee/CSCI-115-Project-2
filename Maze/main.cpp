@@ -29,6 +29,7 @@
 using namespace std;
 
 Maze *M = new Maze(20);                         // Set Maze grid size
+//Maze *M1 = new Maze(20);                         // Set Background grid size
 Player *P = new Player();                       // create player
 
 wall W[10000];
@@ -60,7 +61,7 @@ void resize(int width, int height)              // resizing case on the window
 void init()
 {
     glEnable(GL_COLOR_MATERIAL);
-
+     glutFullScreen();
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_LINE_SMOOTH);
@@ -171,6 +172,8 @@ void key(unsigned char key, int x, int y)
         case 'q':
             exit(0);
             break;
+       // case 'n': // to add menu and toggle fire and move
+
     }
 
     glutPostRedisplay();
@@ -231,9 +234,7 @@ void mouse(int btn, int state, int x, int y){
      glutPostRedisplay();
 };
 
-void Specialkeys(int key, int x, int y)
-{
-    // Your Code here
+void Specialkeys(int key, int x, int y){
     switch(key)
     {
     case GLUT_KEY_UP:
@@ -243,9 +244,10 @@ void Specialkeys(int key, int x, int y)
          else{P->movePlayer("up",P->frames);} // move up
          if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
-            P->shootArrow();}
+            //P->shootArrow();
+            }
             for(int i = 0; i < numEnemy; i++){
-         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
             }
         }
@@ -258,9 +260,10 @@ void Specialkeys(int key, int x, int y)
           else{P->movePlayer("down",P->frames);} // move down
         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
-            P->shootArrow();}
+            //P->shootArrow();
+            }
          for(int i = 0; i < numEnemy; i++){
-         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
             }
         }
@@ -273,9 +276,10 @@ void Specialkeys(int key, int x, int y)
           else{P->movePlayer("left",P->frames);} // move left
         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
-            P->shootArrow();}
+            //P->shootArrow();
+            }
        for(int i = 0; i < numEnemy; i++){
-         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
             }
         }
@@ -288,9 +292,10 @@ void Specialkeys(int key, int x, int y)
           else{P->movePlayer("right",P->frames);} // move right
           if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
-            P->shootArrow();}
+            //P->shootArrow();
+            }
        for(int i = 0; i < numEnemy; i++){
-         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().x)){
+         if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
             }
         }
@@ -299,14 +304,12 @@ void Specialkeys(int key, int x, int y)
     }
   glutPostRedisplay();
 }
-/* Program entry point */
 
 int main(int argc, char *argv[])
 {
    glutInit(&argc, argv);
-
    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-   glutInitWindowSize (800, 800);                //window screen
+   glutInitWindowSize (1280, 720);                //window screen
    glutInitWindowPosition (100, 100);            //window position
    glutCreateWindow ("Maze");                    //program title
    init();

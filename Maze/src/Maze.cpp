@@ -178,7 +178,7 @@ void Maze::drawChest()
         glVertex3f(-1,-1,0.0f);
      glEnd();
 
-     spin +=0.5;
+    // spin +=0.5;
     }
 }
 

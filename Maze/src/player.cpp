@@ -62,9 +62,9 @@ if(arrowStatus){
 
 void Player::shootArrow()
 {   if(livePlayer){
-    if(arrowStatus)
+    if(!arrowStatus)
     {
-     // arrowStatus=true;
+      arrowStatus=true;
 
       if(strcmp(playerDir, "left")==0)
       {
@@ -96,7 +96,6 @@ void Player::shootArrow()
         arrXdir=0;
         arrYdir=-1;
         arrAngle= 0;
-
         arrowLoc.y = plyLoc.y-unitWidth/2;
         arrowLoc.x = plyLoc.x;
       }
@@ -186,7 +185,7 @@ void Player::movePlayer(char* dir, int frames)
         if(T->GetTicks()>10)
         {
             if(plyLoc.x>-1+unitWidth/2)
-                plyLoc.x -= t;
+                plyLoc.x -= t* 6;
             if(xmax>=1){
                 xmax =1/(float)frames;
                 xmin =0;
@@ -205,7 +204,7 @@ void Player::movePlayer(char* dir, int frames)
         if(T->GetTicks()>1)
         {
             if(plyLoc.x<1-unitWidth/2)
-            plyLoc.x += t;
+            plyLoc.x += t*6;
 
             if(xmax>=1){
                 xmax =1/(float)frames;
@@ -224,7 +223,7 @@ void Player::movePlayer(char* dir, int frames)
         playerDir = "up";
         if(T->GetTicks()>1)
         { if(plyLoc.y< 1-unitWidth/2)
-            plyLoc.y += t;
+            plyLoc.y += t*6;
             if(xmax>=1){
                 xmax =1/(float)frames;
                 xmin =0;
@@ -245,7 +244,7 @@ void Player::movePlayer(char* dir, int frames)
         if(T->GetTicks()>1)
         {
             if(plyLoc.y > -1+unitWidth/2)
-                plyLoc.y -= t;
+                plyLoc.y -= t*6;
             if(xmax>=1){
                 xmax =1/(float)frames;
                 xmin =0;
