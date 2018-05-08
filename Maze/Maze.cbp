@@ -58,6 +58,9 @@
 		<Unit filename="include/player.h" />
 		<Unit filename="include/wall.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/A-Star.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="src/Enemies.cpp" />
 		<Unit filename="src/Maze.cpp" />
 		<Unit filename="src/Timer.cpp" />

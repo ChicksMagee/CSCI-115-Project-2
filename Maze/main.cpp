@@ -205,7 +205,6 @@ void key(unsigned char key, int x, int y)
  void idle(void)
 {
 
-    //Your Code here
 
     glutPostRedisplay();
 }
@@ -242,8 +241,12 @@ void Specialkeys(int key, int x, int y){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
          if(wallArray[P->getPlayerLoc().x][P->getPlayerLoc().y + 1] == 1 ){} // do nothing, hit wall
          else{P->movePlayer("up",P->frames);} // move up
+         if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
+            M->liveChest = false;
+       }
          if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
+            M->liveSetOfArrws = false;
             //P->shootArrow();
             }
             for(int i = 0; i < numEnemy; i++){
@@ -258,8 +261,12 @@ void Specialkeys(int key, int x, int y){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(wallArray[P->getPlayerLoc().x][P->getPlayerLoc().y - 1] == 1 ){} // do nothing hit wall
           else{P->movePlayer("down",P->frames);} // move down
+          if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
+            M->liveChest = false;
+       }
         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
+             M->liveSetOfArrws = false;
             //P->shootArrow();
             }
          for(int i = 0; i < numEnemy; i++){
@@ -274,8 +281,12 @@ void Specialkeys(int key, int x, int y){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(wallArray[P->getPlayerLoc().x - 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
           else{P->movePlayer("left",P->frames);} // move left
+          if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
+            M->liveChest = false;
+       }
         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
+             M->liveSetOfArrws = false;
             //P->shootArrow();
             }
        for(int i = 0; i < numEnemy; i++){
@@ -290,8 +301,12 @@ void Specialkeys(int key, int x, int y){
          cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(wallArray[P->getPlayerLoc().x + 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
           else{P->movePlayer("right",P->frames);} // move right
+          if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
+            M->liveChest = false;
+       }
           if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
+            M->liveSetOfArrws = false;
             //P->shootArrow();
             }
        for(int i = 0; i < numEnemy; i++){
