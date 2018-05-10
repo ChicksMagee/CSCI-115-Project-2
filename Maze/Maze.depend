@@ -255,7 +255,7 @@
 	<wall.h>
 	<iostream>
 
-1525753173 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\main.cpp
+1525933617 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\main.cpp
 	<string.h>
 	<CommonThings.h>
 	<Maze.h>
@@ -264,6 +264,10 @@
 	<player.h>
 	<fstream>
 	<sstream>
+	<iomanip>
+	<queue>
+	<math.h>
+	<ctime>
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>

@@ -4,46 +4,17 @@
 	<ActiveTarget name="Debug" />
 	<File name="include\Maze.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="8" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1323" topLine="27" />
+			<Cursor1 position="1323" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="include\Enemies.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="9" zoom_2="0">
+	<File name="src\Timer.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1681" topLine="31" />
+			<Cursor1 position="245" topLine="2" />
 		</Cursor>
-	</File>
-	<File name="include\Timer.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="610" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="617" topLine="21" />
-		</Cursor>
-		<Folding>
-			<Collapse line="50" />
-			<Collapse line="205" />
-		</Folding>
-	</File>
-	<File name="include\CommonThings.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1235" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\player.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2954" topLine="83" />
-		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="21" />
-			<Collapse line="26" />
-		</Folding>
 	</File>
 	<File name="src\Enemies.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3427" topLine="159" />
+			<Cursor1 position="3427" topLine="0" />
 		</Cursor>
 		<Folding>
 			<Collapse line="14" />
@@ -54,28 +25,66 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include\player.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+	<File name="include\Timer.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="916" topLine="18" />
+			<Cursor1 position="610" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\Maze.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2618" topLine="58" />
+			<Cursor1 position="2618" topLine="0" />
 		</Cursor>
 		<Folding>
 			<Collapse line="24" />
 			<Collapse line="28" />
+			<Collapse line="86" />
+			<Collapse line="107" />
+			<Collapse line="127" />
+			<Collapse line="156" />
 		</Folding>
+	</File>
+	<File name="include\CommonThings.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1235" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\player.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2954" topLine="154" />
+		</Cursor>
+		<Folding>
+			<Collapse line="10" />
+			<Collapse line="21" />
+			<Collapse line="26" />
+			<Collapse line="63" />
+		</Folding>
+	</File>
+	<File name="include\player.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="916" topLine="5" />
+		</Cursor>
 	</File>
 	<File name="include\wall.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1200" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\Timer.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="245" topLine="2" />
+			<Cursor1 position="17763" topLine="54" />
+		</Cursor>
+		<Folding>
+			<Collapse line="63" />
+			<Collapse line="90" />
+			<Collapse line="143" />
+			<Collapse line="151" />
+			<Collapse line="276" />
+			<Collapse line="359" />
+		</Folding>
+	</File>
+	<File name="include\Enemies.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="9" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1681" topLine="6" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
