@@ -60,33 +60,6 @@ Timer *T0 = new Timer();
 float wWidth, wHeight;                          // display window width and Height
 float xPos,yPos;                                // Viewpoar mapping
 
-void rotateMatrix(int mat[n][m])
-{
-    // Consider all squares one by one
-    for (int x = 0; x < n / 2; x++)
-    {
-        // Consider elements in group of 4 in
-        // current square
-        for (int y = x; y < n-x-1; y++)
-        {
-            // store current cell in temp variable
-            int temp = mat[x][y];
-
-            // move values from right to top
-            mat[x][y] = mat[y][n-1-x];
-
-            // move values from bottom to right
-            mat[y][n-1-x] = mat[n-1-x][n-1-y];
-
-            // move values from left to bottom
-            mat[n-1-x][n-1-y] = mat[n-1-y][x];
-
-            // assign temp to left
-            mat[n-1-y][x] = temp;
-        }
-    }
-}
-
 class node
 {
 	// current position
@@ -345,13 +318,13 @@ if (myfile.is_open()){
             M->placeChest(x,y);
             }
         }
-       //S rotateMatrix(map);
-        for (int i = 0; i < n; ++i){
-        for (int j = 0; j < m; ++j){
-            std::cout << map[i][j] << ' ';
-        }
-        std::cout << std::endl;
-	}
+      //  rotateMatrix(map);
+       // for (int i = 0; i < n; ++i){
+      //  for (int j = 0; j < m; ++j){
+        //    std::cout << map[i][j] << ' ';
+     //   }
+       // std::cout << std::endl;
+	//}
     myfile.close();
     }
 }
@@ -489,21 +462,23 @@ void Specialkeys(int key, int x, int y){
             M->liveSetOfArrws = false;
             //P->shootArrow();
             }
+
             for(int i = 0; i < numEnemy; i++){
+            if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
+                cout << P->getArrowLoc().x <<  P->getArrowLoc().y << endl;
+                E[i].live = false;
+            }
+            if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
         else{
             string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
-           // cout << "Map Size (X,Y): " << n << "," << m << endl;
-            cout << "Start: " << E[i].getEnemyLoc().x << "," << E[i].getEnemyLoc().y << endl;
-            cout << "Finish: " << P->getPlayerLoc().x << "," << P->getPlayerLoc().y << endl;
-           // cout << i << endl;
-             cout << route[0] << endl;
-           if(route[0] == '0'){E[0].moveEnemy("right");}
-            else if(route[0] == '1'){E[0].moveEnemy("down");}
-             else if(route[0] == '2'){E[0].moveEnemy("left");}
-            else{E[0].moveEnemy("up");}
+           if(route[0] == '0'){E[i].moveEnemy("right");}
+            else if(route[0] == '1'){E[i].moveEnemy("up");}
+             else if(route[0] == '2'){E[i].moveEnemy("left");}
+            else{E[i].moveEnemy("down");}
         }
+            }
             }
         }
     break;
@@ -522,21 +497,21 @@ void Specialkeys(int key, int x, int y){
             //P->shootArrow();
             }
          for(int i = 0; i < numEnemy; i++){
+                if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
+                E[i].live = false;
+            }
+                 if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
               else{
             string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
-            //cout << "Map Size (X,Y): " << n << "," << m << endl;
-            cout << "Start: " << E[i].getEnemyLoc().x << "," << E[i].getEnemyLoc().y << endl;
-            cout << "Finish: " << P->getPlayerLoc().x << "," << P->getPlayerLoc().y << endl;
-           // cout << i << endl;
-            cout << route[0] << endl;
-          if(route[0] == '0'){E[0].moveEnemy("right");}
-            else if(route[0] == '1'){E[0].moveEnemy("down");}
-             else if(route[0] == '2'){E[0].moveEnemy("left");}
-            else{E[0].moveEnemy("up");}
+          if(route[0] == '0'){E[i].moveEnemy("right");}
+            else if(route[0] == '1'){E[i].moveEnemy("up");}
+             else if(route[0] == '2'){E[i].moveEnemy("left");}
+            else{E[i].moveEnemy("down");}
         }
             }
+         }
         }
     break;
 
@@ -554,21 +529,21 @@ void Specialkeys(int key, int x, int y){
             //P->shootArrow();
             }
        for(int i = 0; i < numEnemy; i++){
+            if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
+                E[i].live = false;
+            }
+             if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
               else{
             string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
-           // cout << "Map Size (X,Y): " << n << "," << m << endl;
-            cout << "Start: " << E[i].getEnemyLoc().x << "," << E[i].getEnemyLoc().y << endl;
-            cout << "Finish: " << P->getPlayerLoc().x << "," << P->getPlayerLoc().y << endl;
-           // cout << i << endl;
-             cout << route[0] << endl;
-            if(route[0] == '0'){E[0].moveEnemy("right");}
-            else if(route[0] == '1'){E[0].moveEnemy("down");}
-             else if(route[0] == '2'){E[0].moveEnemy("left");}
-            else{E[0].moveEnemy("up");}
+            if(route[0] == '0'){E[i].moveEnemy("right");}
+            else if(route[0] == '1'){E[i].moveEnemy("up");}
+             else if(route[0] == '2'){E[i].moveEnemy("left");}
+            else{E[i].moveEnemy("down");}
         }
             }
+       }
         }
     break;
 
@@ -586,21 +561,21 @@ void Specialkeys(int key, int x, int y){
             //P->shootArrow();
             }
        for(int i = 0; i < numEnemy; i++){
+            if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
+                E[i].live = false;
+            }
+            if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
               else{
             string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
-           // cout << "Map Size (X,Y): " << n << "," << m << endl;
-            cout << "Start: " << E[i].getEnemyLoc().x << "," << E[i].getEnemyLoc().y << endl;
-            cout << "Finish: " << P->getPlayerLoc().x << "," << P->getPlayerLoc().y << endl;
-           // cout << i << endl;
-            cout << route[0] << endl;
-           if(route[0] == '0'){E[0].moveEnemy("right");}
-            else if(route[0] == '1'){E[0].moveEnemy("down");}
-             else if(route[0] == '2'){E[0].moveEnemy("left");}
-            else{E[0].moveEnemy("up");}
+           if(route[0] == '0'){E[i].moveEnemy("right");}
+            else if(route[0] == '1'){E[i].moveEnemy("up");}
+             else if(route[0] == '2'){E[i].moveEnemy("left");}
+            else{E[i].moveEnemy("down");}
         }
             }
+       }
         }
     break;
 
