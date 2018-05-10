@@ -62,9 +62,9 @@ if(arrowStatus){
 
 void Player::shootArrow()
 {   if(livePlayer){
-    if(!arrowStatus)
-    {
-      arrowStatus=true;
+    if(arrowStatus== true){cout << "True" << endl;}
+    if(arrowStatus){
+     // arrowStatus=true;
 
       if(strcmp(playerDir, "left")==0)
       {

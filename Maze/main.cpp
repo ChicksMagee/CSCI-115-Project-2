@@ -1,8 +1,4 @@
-/*
- * MAZE Game Framework
- * Written by Dr. Dhanyu Amarasinghe Spring 2018
- */
-
+#include <cstring>
 #include <string.h>
 #include <CommonThings.h>
 #include <Maze.h>
@@ -15,20 +11,15 @@
 #include <queue>
 #include <math.h>
 #include <ctime>
-
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
 #endif
-
 #include <stdlib.h>
 #include <Enemies.h>
-
 #include <wall.h>
 #include <math.h>
-
-/* GLUT callback Handlers */
 
 using namespace std;
 const int n = 20; // horizontal size of the map
@@ -38,24 +29,17 @@ static int closed_nodes_map[n][m]; // map of closed (tried-out) nodes
 static int open_nodes_map[n][m]; // map of open (not-yet-tried) nodes
 static int dir_map[n][m]; // map of directions
 const int dir = 4; // number of possible directions to go at any position
-				   // if dir==4
-				   static int dx[dir]={1, 0, -1, 0};
-				   static int dy[dir]={0, 1, 0, -1};
-				   // if dir==8
-//static int dx[dir] = { 1, 1, 0, -1, -1, -1, 0, 1 };
-//static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
+static int dx[dir]={1, 0, -1, 0};
+static int dy[dir]={0, 1, 0, -1};
 Maze *M = new Maze(20);                         // Set Maze grid size
-//Maze *M1 = new Maze(20);                         // Set Background grid size
 Player *P = new Player();                       // create player
-
-wall W[1000];
-//int wallArray[50][50];                                    // wall with number of bricks
+wall W[1000];                                  // wall with number of bricks
 Enemies E[100];                                  // create number of enemies
 Timer *T0 = new Timer();
- string line, obj;
-    int x, y;
-    int numWall = 0;
-    int numEnemy = 0;                       // animation timer
+string line, obj;
+int x, y;
+int numWall = 0;
+int numEnemy = 0;
 
 float wWidth, wHeight;                          // display window width and Height
 float xPos,yPos;                                // Viewpoar mapping
@@ -260,7 +244,7 @@ void resize(int width, int height)              // resizing case on the window
 void init()
 {
     glEnable(GL_COLOR_MATERIAL);
-     glutFullScreen();
+    glutFullScreen();
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_LINE_SMOOTH);
@@ -275,30 +259,26 @@ void init()
 
     glEnable(GL_BLEND);                                 //display images with transparent
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-     M->loadBackgroundImage("images/bak.jpg");           // Load maze background image
+     M->loadBackgroundImage("images/lava.jpg");           // Load maze background image
 
     fstream myfile ("maze.txt");
 if (myfile.is_open()){
     cout << "Able to open file" << endl;
-     // create empty map
-        for (int y = 0; y<m; y++)
-	{
-		for (int x = 0; x<n; x++) map[x][y] = 0;
-	}
-
+        for (int y = 0; y<m; y++){
+		for (int x = 0; x<n; x++){
+            map[x][y] = 0;
+            }
+        }
     while ( getline (myfile,line) ){
         stringstream ss(line);
         ss >> obj >> x >> y;
-        //cout << obj << endl;
-        //cout << x << endl;
-        //cout << y << endl;
         if(obj == "enemy"){
-            E[numEnemy].initEnm(M->getGridSize(),4,"images/e.png"); //Load enemy image
+            E[numEnemy].initEnm(M->getGridSize(),4,"images/Dragon.png"); //Load enemy image
             E[numEnemy].placeEnemy(float(x%(M->getGridSize())),float(y%(M->getGridSize())));
             numEnemy++;
             }
        else if(obj == "wall"){
-            W[numWall].wallInit(M->getGridSize(),"images/wall.png");// Load walls
+            W[numWall].wallInit(M->getGridSize(),"images/wallrock.jpg");// Load walls
             W[numWall].placeWall(x,y);
             //wallArray[x][y] = 1;
             numWall++;
@@ -318,13 +298,6 @@ if (myfile.is_open()){
             M->placeChest(x,y);
             }
         }
-      //  rotateMatrix(map);
-       // for (int i = 0; i < n; ++i){
-      //  for (int j = 0; j < m; ++j){
-        //    std::cout << map[i][j] << ' ';
-     //   }
-       // std::cout << std::endl;
-	//}
     myfile.close();
     }
 }
@@ -380,6 +353,22 @@ void key(unsigned char key, int x, int y)
     {
         case ' ':
              P->shootArrow();
+           for(int i = 0; i < numEnemy; i++){
+            for(int j = 0; j < 20; j++){
+            if((strcmp(P->playerDir, "right")==0) && (P->getArrowLoc().x + j == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y)){
+                E[i].live = false;
+            }
+            else if((strcmp(P->playerDir, "left")==0) && (P->getArrowLoc().x - j == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y)){
+                E[i].live = false;
+                }
+            else if((strcmp(P->playerDir, "up")==0) && (P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y + j == E[i].getEnemyLoc().y)){
+                E[i].live = false;
+                }
+           else if((strcmp(P->playerDir, "up")==0) && (P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y - j == E[i].getEnemyLoc().y)){
+                E[i].live = false;
+            }
+            }
+           }
         break;
         case 27 :                       // esc key to exit
         case 'q':
@@ -456,18 +445,14 @@ void Specialkeys(int key, int x, int y){
          else{P->movePlayer("up",P->frames);} // move up
          if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
+            P->livePlayer = false;
        }
          if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
             M->liveSetOfArrws = false;
-            //P->shootArrow();
             }
 
             for(int i = 0; i < numEnemy; i++){
-            if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
-                cout << P->getArrowLoc().x <<  P->getArrowLoc().y << endl;
-                E[i].live = false;
-            }
             if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
@@ -490,16 +475,13 @@ void Specialkeys(int key, int x, int y){
           else{P->movePlayer("down",P->frames);} // move down
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
+            P->livePlayer = false;
        }
         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
              M->liveSetOfArrws = false;
-            //P->shootArrow();
             }
          for(int i = 0; i < numEnemy; i++){
-                if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
-                E[i].live = false;
-            }
                  if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
@@ -522,16 +504,13 @@ void Specialkeys(int key, int x, int y){
           else{P->movePlayer("left",P->frames);} // move left
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
+            P->livePlayer = false;
        }
         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
              M->liveSetOfArrws = false;
-            //P->shootArrow();
             }
        for(int i = 0; i < numEnemy; i++){
-            if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
-                E[i].live = false;
-            }
              if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
@@ -554,16 +533,13 @@ void Specialkeys(int key, int x, int y){
           else{P->movePlayer("right",P->frames);} // move right
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
+            P->livePlayer = false;
        }
           if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
             P->arrowStatus = true;
             M->liveSetOfArrws = false;
-            //P->shootArrow();
             }
        for(int i = 0; i < numEnemy; i++){
-            if(P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y == E[i].getEnemyLoc().y){
-                E[i].live = false;
-            }
             if(E[i].live){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}

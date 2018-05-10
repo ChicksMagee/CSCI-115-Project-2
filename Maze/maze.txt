@@ -151,8 +151,9 @@ wall 2 12
 wall 3 12
 enemy 17 17
 enemy 3 5
-enemy 15 14
-enemy 1 10
+enemy 16 4
+enemy 10 10
+enemy 3 17
 arrow 7 2
 player 1 0
 chest 19 18
