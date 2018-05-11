@@ -303,7 +303,7 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1526015289 c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\include\player.h
+1526021142 c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\include\player.h
 	<CommonThings.h>
 	<string.h>
 	<gl/gl.h>
@@ -338,7 +338,7 @@
 1526019974 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\maze.cpp
 	<Maze.h>
 
-1526019950 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\player.cpp
+1526021208 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\player.cpp
 	<Player.h>
 
 1524522678 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\timer.cpp
