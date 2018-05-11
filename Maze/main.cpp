@@ -94,7 +94,7 @@ bool operator<(const node & a, const node & b){
 
 // A-star algorithm.
 // The route returned is a string of direction digits.
-string pathFind(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish){
+string path(const int & xStart, const int & yStart, const int & xFinish, const int & yFinish){
 	static priority_queue<node> pq[2]; // list of open (not-yet-tried) nodes
 	static int pqi; // pq index
 	static node* n0;
@@ -450,7 +450,7 @@ void Specialkeys(int key, int x, int y){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;} // kill the player
         else{
-            string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y); // Enemies have to find shortest path to player
+            string route = path( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y); // Enemies have to find shortest path to player
            if(route[0] == '0'){E[i].moveEnemy("right");} // move right
             else if(route[0] == '1'){E[i].moveEnemy("up");} // move up
              else if(route[0] == '2'){E[i].moveEnemy("left");} // move left
@@ -480,7 +480,7 @@ void Specialkeys(int key, int x, int y){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
               else{
-            string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
+            string route = path( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
           if(route[0] == '0'){E[i].moveEnemy("right");}
             else if(route[0] == '1'){E[i].moveEnemy("up");}
              else if(route[0] == '2'){E[i].moveEnemy("left");}
@@ -510,7 +510,7 @@ void Specialkeys(int key, int x, int y){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
               else{
-            string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
+            string route = path( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
             if(route[0] == '0'){E[i].moveEnemy("right");}
             else if(route[0] == '1'){E[i].moveEnemy("up");}
              else if(route[0] == '2'){E[i].moveEnemy("left");}
@@ -540,7 +540,7 @@ void Specialkeys(int key, int x, int y){
          if((P->getPlayerLoc().x == E[i].getEnemyLoc().x) && (P->getPlayerLoc().y == E[i].getEnemyLoc().y)){
             P->livePlayer = false;}
               else{
-            string route = pathFind( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
+            string route = path( E[i].getEnemyLoc().x, E[i].getEnemyLoc().y , P->getPlayerLoc().x, P->getPlayerLoc().y);
            if(route[0] == '0'){E[i].moveEnemy("right");}
             else if(route[0] == '1'){E[i].moveEnemy("up");}
              else if(route[0] == '2'){E[i].moveEnemy("left");}
