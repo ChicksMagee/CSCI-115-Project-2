@@ -149,7 +149,7 @@ wall 13 10
 wall 12 14
 wall 2 12
 wall 3 12
-enemy 17 17
+enemy 16 16
 enemy 3 5
 enemy 16 4
 enemy 10 10

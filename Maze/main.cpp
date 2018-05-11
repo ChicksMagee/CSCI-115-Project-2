@@ -40,7 +40,7 @@ string line, obj;
 int x, y;
 int numWall = 0;
 int numEnemy = 0;
-
+int choice;
 float wWidth, wHeight;                          // display window width and Height
 float xPos,yPos;                                // Viewpoar mapping
 
@@ -254,14 +254,27 @@ void init()
 
     glClearColor(0.0,0.0,0.0,0.0);
     gluOrtho2D(0, wWidth, 0, wHeight);
-
+   // int choice;
+    fstream myfile;
+    while(choice != 1 && choice != 2){
+    cout << "What Level Would You like to play on? " << endl;
+    cout << "1. Lava" << endl;
+    cout << "2. Forest" << endl;
+    cout << "Please enter 1 or 2" << endl;
+    cin >> choice;
+    }
     T0->Start();                                        // set timer to 0
 
     glEnable(GL_BLEND);                                 //display images with transparent
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    if(choice == 1){
      M->loadBackgroundImage("images/lava.jpg");           // Load maze background image
-
-    fstream myfile ("lava.txt");
+     myfile.open("lava.txt");
+   }
+    else{
+    M->loadBackgroundImage("images/bak.jpg");           // Load maze background image
+     myfile.open("forest.txt");
+    }
 if (myfile.is_open()){
     cout << "Able to open file" << endl;
         for (int y = 0; y<m; y++){
@@ -273,12 +286,18 @@ if (myfile.is_open()){
         stringstream ss(line);
         ss >> obj >> x >> y;
         if(obj == "enemy"){
+            if(choice == 1){
             E[numEnemy].initEnm(M->getGridSize(),4,"images/Dragon.png"); //Load enemy image
+        } //Load enemy image
+            else{E[numEnemy].initEnm(M->getGridSize(),4,"images/e.png");}
             E[numEnemy].placeEnemy(float(x%(M->getGridSize())),float(y%(M->getGridSize())));
             numEnemy++;
             }
        else if(obj == "wall"){
-            W[numWall].wallInit(M->getGridSize(),"images/wallrock.jpg");// Load walls
+            if(choice == 1){
+            W[numWall].wallInit(M->getGridSize(),"images/wallrock.jpg"); // Load walls
+            }
+            else{ W[numWall].wallInit(M->getGridSize(),"images/bush.png");}
             W[numWall].placeWall(x,y);
             //wallArray[x][y] = 1;
             numWall++;
@@ -300,6 +319,9 @@ if (myfile.is_open()){
         }
     myfile.close();
     }
+    else{
+        cout << "Unable to open file" << endl;
+    }
 }//end file open
 
 void display(void)
@@ -311,7 +333,7 @@ void display(void)
         glPopMatrix();
 
 
-        for(int i=0; i<500;i++)
+        for(int i=0; i<400;i++)
         {
            W[i].drawWall();
         }
@@ -368,7 +390,7 @@ void key(unsigned char key, int x, int y)
             else if((strcmp(P->playerDir, "up")==0) && (P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y + j == E[i].getEnemyLoc().y)){
                 E[i].live = false;
                 }
-           else if((strcmp(P->playerDir, "up")==0) && (P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y - j == E[i].getEnemyLoc().y)){
+           else if((strcmp(P->playerDir, "down")==0) && (P->getArrowLoc().x == E[i].getEnemyLoc().x && P->getArrowLoc().y - j == E[i].getEnemyLoc().y)){
                 E[i].live = false;
             }
             }
@@ -444,7 +466,7 @@ void Specialkeys(int key, int x, int y){
     {
     case GLUT_KEY_UP:
         if(P->livePlayer && M->liveChest){
-       //  cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
          if(map[P->getPlayerLoc().x][P->getPlayerLoc().y + 1] == 1 ){} // do nothing, hit wall
          else{P->movePlayer("up",P->frames);} // move up
          if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
@@ -455,7 +477,7 @@ void Specialkeys(int key, int x, int y){
             P->arrowStatus = true;
             P->numArrows = P->numArrows + 5;
             M->liveSetOfArrws = false;
-            cout << "Number of Arrows: " << P->numArrows << endl;
+           // cout << "Number of Arrows: " << P->numArrows << endl;
             }
 
             for(int i = 0; i < numEnemy; i++){
@@ -476,7 +498,7 @@ void Specialkeys(int key, int x, int y){
 
     case GLUT_KEY_DOWN:
         if(P->livePlayer && M->liveChest){
-        // cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(map[P->getPlayerLoc().x][P->getPlayerLoc().y - 1] == 1 ){} // do nothing hit wall
           else{P->movePlayer("down",P->frames);} // move down
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
@@ -507,7 +529,7 @@ void Specialkeys(int key, int x, int y){
 
     case GLUT_KEY_LEFT:
         if(P->livePlayer && M->liveChest){
-        // cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(map[P->getPlayerLoc().x - 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
           else{P->movePlayer("left",P->frames);} // move left
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
@@ -518,7 +540,7 @@ void Specialkeys(int key, int x, int y){
             P->arrowStatus = true;
              P->numArrows = P->numArrows + 5;
              M->liveSetOfArrws = false;
-              cout << "Number of Arrows: " << P->numArrows << endl;
+            //  cout << "Number of Arrows: " << P->numArrows << endl;
             }
        for(int i = 0; i < numEnemy; i++){
              if(E[i].live){
@@ -538,7 +560,7 @@ void Specialkeys(int key, int x, int y){
 
     case GLUT_KEY_RIGHT:
         if(P->livePlayer && M->liveChest){
-        // cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(map[P->getPlayerLoc().x + 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
           else{P->movePlayer("right",P->frames);} // move right
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
@@ -549,7 +571,7 @@ void Specialkeys(int key, int x, int y){
             P->arrowStatus = true;
              P->numArrows = P->numArrows + 5;
             M->liveSetOfArrws = false;
-             cout << "Number of Arrows: " << P->numArrows << endl;
+            // cout << "Number of Arrows: " << P->numArrows << endl;
             }
        for(int i = 0; i < numEnemy; i++){
             if(E[i].live){
