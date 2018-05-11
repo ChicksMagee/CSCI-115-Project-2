@@ -1,3 +1,7 @@
+/*
+ * MAZE Game Framework
+ * Written by Dr. Dhanyu Amarasinghe Spring 2018
+ */
 #include <Player.h>
 
 Timer *T = new Timer();                             // Set Timer for animation
@@ -57,12 +61,11 @@ if(arrowStatus){
 }
 
 void Player::shootArrow()
-{   if(livePlayer){
-    //if(arrowStatus== true){cout << "True" << endl;}
-    if(!arrowStatus){
-    if(numArrows > 0){
-      arrowStatus=true;
-    numArrows--;
+{   if(livePlayer){ // if player is alive
+    if(!arrowStatus){ // if they can shoot
+    if(numArrows > 0){ // if they have arrows
+    arrowStatus=true;
+    numArrows--; // decrement number of arrows each time user shoots
       if(strcmp(playerDir, "left")==0)
       {
         arrAngle = -90;
@@ -100,7 +103,6 @@ void Player::shootArrow()
     }
 }
 }
-
 
 void Player::loadArrowImage(char* fileName)
 {

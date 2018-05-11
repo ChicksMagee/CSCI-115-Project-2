@@ -37,7 +37,7 @@ class Player
 
         int frames;                        // Number of frames for animation
         char *playerDir;                   // direction of player face
-        int numArrows;
+        int numArrows;                     // number of arrows the player has
         bool arrowStatus;                  // arrow is active or not
         bool livePlayer;                   // Player live or dead
     protected:
