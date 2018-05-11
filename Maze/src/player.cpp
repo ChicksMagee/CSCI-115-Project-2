@@ -1,8 +1,3 @@
-/*
- * MAZE Game Framework
- * Written by Dr. Dhanyu Amarasinghe Spring 2018
- */
-
 #include <Player.h>
 
 Timer *T = new Timer();                             // Set Timer for animation
@@ -62,7 +57,7 @@ if(arrowStatus){
 
 void Player::shootArrow()
 {   if(livePlayer){
-    if(arrowStatus== true){cout << "True" << endl;}
+    //if(arrowStatus== true){cout << "True" << endl;}
     if(arrowStatus){
      // arrowStatus=true;
 
