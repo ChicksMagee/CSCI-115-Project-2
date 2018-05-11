@@ -11,6 +11,7 @@ Player::Player()
     arrAngle =0;
     arrowStatus = false;
     livePlayer = true;
+    numArrows = 0;
 }
 
 Player::~Player()
@@ -58,9 +59,10 @@ if(arrowStatus){
 void Player::shootArrow()
 {   if(livePlayer){
     //if(arrowStatus== true){cout << "True" << endl;}
-    if(arrowStatus){
-     // arrowStatus=true;
-
+    if(!arrowStatus){
+    if(numArrows > 0){
+      arrowStatus=true;
+    numArrows--;
       if(strcmp(playerDir, "left")==0)
       {
         arrAngle = -90;
@@ -96,6 +98,7 @@ void Player::shootArrow()
       }
      }
     }
+}
 }
 
 

@@ -255,7 +255,7 @@
 	<wall.h>
 	<iostream>
 
-1526011712 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\main.cpp
+1526015623 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\main.cpp
 	<cstring>
 	<string.h>
 	<CommonThings.h>
@@ -303,7 +303,7 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1524522678 c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\include\player.h
+1526015289 c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\include\player.h
 	<CommonThings.h>
 	<string.h>
 	<gl/gl.h>
@@ -338,7 +338,7 @@
 1525752159 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\maze.cpp
 	<Maze.h>
 
-1526012031 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\player.cpp
+1526015484 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\player.cpp
 	<Player.h>
 
 1524522678 source:c:\users\tesam\desktop\csci 115 project 2\csci-115-project-2\maze\src\timer.cpp

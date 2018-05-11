@@ -261,7 +261,7 @@ void init()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
      M->loadBackgroundImage("images/lava.jpg");           // Load maze background image
 
-    fstream myfile ("maze.txt");
+    fstream myfile ("lava.txt");
 if (myfile.is_open()){
     cout << "Able to open file" << endl;
         for (int y = 0; y<m; y++){
@@ -444,16 +444,18 @@ void Specialkeys(int key, int x, int y){
     {
     case GLUT_KEY_UP:
         if(P->livePlayer && M->liveChest){
-         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+       //  cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
          if(map[P->getPlayerLoc().x][P->getPlayerLoc().y + 1] == 1 ){} // do nothing, hit wall
          else{P->movePlayer("up",P->frames);} // move up
          if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
             P->livePlayer = false;
        }
-         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x && P->getPlayerLoc().y == M->GetStArrwsLoc().y) &&  M->liveSetOfArrws != false ){
             P->arrowStatus = true;
+            P->numArrows = P->numArrows + 5;
             M->liveSetOfArrws = false;
+            cout << "Number of Arrows: " << P->numArrows << endl;
             }
 
             for(int i = 0; i < numEnemy; i++){
@@ -474,16 +476,18 @@ void Specialkeys(int key, int x, int y){
 
     case GLUT_KEY_DOWN:
         if(P->livePlayer && M->liveChest){
-         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+        // cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(map[P->getPlayerLoc().x][P->getPlayerLoc().y - 1] == 1 ){} // do nothing hit wall
           else{P->movePlayer("down",P->frames);} // move down
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
             P->livePlayer = false;
        }
-        if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+         if((P->getPlayerLoc().x == M->GetStArrwsLoc().x && P->getPlayerLoc().y == M->GetStArrwsLoc().y) &&  M->liveSetOfArrws != false ){
             P->arrowStatus = true;
+             P->numArrows = P->numArrows + 5;
              M->liveSetOfArrws = false;
+              cout << "Number of Arrows: " << P->numArrows << endl;
             }
          for(int i = 0; i < numEnemy; i++){
                  if(E[i].live){
@@ -503,16 +507,18 @@ void Specialkeys(int key, int x, int y){
 
     case GLUT_KEY_LEFT:
         if(P->livePlayer && M->liveChest){
-         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+        // cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(map[P->getPlayerLoc().x - 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
           else{P->movePlayer("left",P->frames);} // move left
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
             P->livePlayer = false;
        }
-        if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+        if((P->getPlayerLoc().x == M->GetStArrwsLoc().x && P->getPlayerLoc().y == M->GetStArrwsLoc().y) &&  M->liveSetOfArrws != false ){
             P->arrowStatus = true;
+             P->numArrows = P->numArrows + 5;
              M->liveSetOfArrws = false;
+              cout << "Number of Arrows: " << P->numArrows << endl;
             }
        for(int i = 0; i < numEnemy; i++){
              if(E[i].live){
@@ -532,16 +538,18 @@ void Specialkeys(int key, int x, int y){
 
     case GLUT_KEY_RIGHT:
         if(P->livePlayer && M->liveChest){
-         cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
+        // cout<< P->getPlayerLoc().x<< "    "<<P->getPlayerLoc().y<<endl;
           if(map[P->getPlayerLoc().x + 1][P->getPlayerLoc().y] == 1 ){} // do nothing hit wall
           else{P->movePlayer("right",P->frames);} // move right
           if((P->getPlayerLoc().x == M->GetChestLoc().x) && (P->getPlayerLoc().y == M->GetChestLoc().y)){
             M->liveChest = false;
             P->livePlayer = false;
        }
-          if((P->getPlayerLoc().x == M->GetStArrwsLoc().x) && (P->getPlayerLoc().y == M->GetStArrwsLoc().y)){
+          if((P->getPlayerLoc().x == M->GetStArrwsLoc().x && P->getPlayerLoc().y == M->GetStArrwsLoc().y) &&  M->liveSetOfArrws != false ){
             P->arrowStatus = true;
+             P->numArrows = P->numArrows + 5;
             M->liveSetOfArrws = false;
+             cout << "Number of Arrows: " << P->numArrows << endl;
             }
        for(int i = 0; i < numEnemy; i++){
             if(E[i].live){
