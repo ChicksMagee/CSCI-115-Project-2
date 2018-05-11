@@ -300,7 +300,7 @@ if (myfile.is_open()){
         }
     myfile.close();
     }
-}
+}//end file open
 
 void display(void)
 {
@@ -324,9 +324,13 @@ void display(void)
             P->drawplayer();
         glPopMatrix();
 
+
         for(int i=0; i<10;i++)
         {
-        E[i].drawEnemy();
+            if(E[i].live){
+            E[i].drawEnemy();
+            }
+            //else E[i].live = false;
         }
 
         glPushMatrix();
